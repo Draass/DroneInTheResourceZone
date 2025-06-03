@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using _Project.Scripts.Data.Interfaces;
 using _Project.Scripts.Data.Interfaces.Models;
+using _Project.Scripts.Data.Models;
 
 namespace _Project.Scripts.Data
 {
@@ -8,7 +9,7 @@ namespace _Project.Scripts.Data
     {
         public IReadOnlyList<IResourceModel> ResourceModels { get; } = new List<IResourceModel>()
         {
-        
+            new MineralResourceModel()
         };
     }
 }

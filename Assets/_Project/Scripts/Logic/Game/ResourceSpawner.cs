@@ -2,6 +2,7 @@
 using _Project.Scripts.Data.Interfaces;
 using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Logic.Game
@@ -24,6 +25,7 @@ namespace _Project.Scripts.Logic.Game
             IGameEntitites gameEntities,
             IResourceFactory resourceFactory)
         {
+            _gameEntities = gameEntities;
             _resourceSpawnTransformProvider = resourceSpawnTransformProvider;
             _resourceFactory = resourceFactory;
         }
@@ -50,14 +52,13 @@ namespace _Project.Scripts.Logic.Game
         {
             var resourceItem = _resourceFactory.Create(resourceId);
 
-            var resourceTransform = _resourceSpawnTransformProvider.GetSpawnTransform();
-        
-            resourceItem.transform.SetParent(resourceTransform);
+            var resourcePosition = _resourceSpawnTransformProvider.GetSpawnTransform();
+            
+            resourceItem.transform.SetPositionAndRotation(resourcePosition.Value, Quaternion.identity);
 
             return resourceItem;
         }
-
-
+        
         private string GetRandomResource()
         {
             var randomResourceIndex = Random.Range(0, _gameEntities.ResourceModels.Count);

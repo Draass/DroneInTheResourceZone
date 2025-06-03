@@ -1,15 +1,15 @@
 ﻿using _Project.Scripts.Logic.Interfaces.Game.Providers;
 using Sirenix.OdinInspector;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 namespace _Project.Scripts.Logic.Game.Providers
 {
     public class SpawnBoundsProvider : MonoBehaviour, ISpawnBoundsProvider
     {
-        [field: SerializeField, Required, SceneObjectsOnly]
-        public Transform LeftBound { get; private set; }
+        [SerializeField, Required, SceneObjectsOnly]
+        private NavMeshSurface _surface;
         
-        [field: SerializeField, Required, SceneObjectsOnly]
-        public Transform RightBound { get; private set; }
+        public NavMeshSurface Surface => _surface;
     }
 }

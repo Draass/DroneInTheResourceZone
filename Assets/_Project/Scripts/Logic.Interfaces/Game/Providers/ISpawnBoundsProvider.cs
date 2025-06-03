@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Unity.AI.Navigation;
+using UnityEngine;
 
 namespace _Project.Scripts.Logic.Interfaces.Game.Providers
 {
     public interface ISpawnBoundsProvider
     {
-        Transform LeftBound { get; }
-        Transform RightBound { get; }
+        NavMeshSurface Surface {get;}
     }
 }

@@ -1,4 +1,5 @@
-﻿using _Project.Scripts.Logic.Interfaces.Common;
+﻿using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Interfaces.Common;
 using _Project.Scripts.Logic.Interfaces.Game;
 using Cysharp.Threading.Tasks;
 using DraasGames.Core.Runtime.Infrastructure.Loaders.Abstract;
@@ -32,7 +33,8 @@ namespace _Project.Scripts.Logic.Game
     
         public async UniTask Initialize()
         {
-            _prefab = await _assetLoader.LoadWithComponentAsync<ResourceItem>("", _scopeLifetimeProvider.ScopeLifetime);
+            // TODO only to test current initialize flow
+            _prefab = await _assetLoader.LoadWithComponentAsync<ResourceItem>(Constants.Resources.Mineral, _scopeLifetimeProvider.ScopeLifetime);
         }
 
         public ResourceItem Create(string id)

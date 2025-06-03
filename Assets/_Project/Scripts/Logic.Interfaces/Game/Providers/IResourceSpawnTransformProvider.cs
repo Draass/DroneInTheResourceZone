@@ -4,6 +4,6 @@ namespace _Project.Scripts.Logic.Interfaces.Game.Providers
 {
     public interface IResourceSpawnTransformProvider
     {
-        Transform GetSpawnTransform();
+        Vector3? GetSpawnTransform();
     }
 }
