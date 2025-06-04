@@ -2,6 +2,7 @@
 using _Project.Scripts.Logic.Game;
 using _Project.Scripts.Logic.Game.Providers;
 using _Project.Scripts.Logic.Game.Resources;
+using _Project.Scripts.Logic.Game.Unit;
 using _Project.Scripts.Logic.Interfaces.Game;
 using Sirenix.OdinInspector;
 using UnityEngine;

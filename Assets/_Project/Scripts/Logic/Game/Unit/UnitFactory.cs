@@ -4,13 +4,8 @@ using Cysharp.Threading.Tasks;
 using DraasGames.Core.Runtime.Infrastructure.Loaders.Abstract;
 using Zenject;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Unit
 {
-    public interface IUnitFactory
-    {
-        DroneBehaviour Create(PlayerFaction faction);
-    }
-
     public class UnitFactory : IUnitFactory, IAsyncInitialize
     {
         private const string DroneKey = "Drone";
