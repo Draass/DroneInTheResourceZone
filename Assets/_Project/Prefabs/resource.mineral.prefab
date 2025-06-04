@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7635448356849146165}
   - component: {fileID: 6183831130890026518}
   - component: {fileID: 6326776574431553097}
+  - component: {fileID: 4306751283957720492}
   m_Layer: 3
   m_Name: resource.mineral
   m_TagString: Untagged
@@ -121,3 +122,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a02dd016cf48cf8b18602efac44282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &4306751283957720492
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543978893838192744}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

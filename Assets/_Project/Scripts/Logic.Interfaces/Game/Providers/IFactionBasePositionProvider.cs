@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Game;
+using UnityEngine;
 
 namespace _Project.Scripts.Logic.Interfaces.Game.Providers
 {
     public interface IFactionBasePositionProvider
     {
-        // TODO get position for base by it's type
-        public Vector3 Position { get; }
+        public Vector3 GetPosition(PlayerFaction faction);
     }
 }

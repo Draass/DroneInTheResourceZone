@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Scripts.Data;
 using _Project.Scripts.Logic.Data;
 using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
@@ -19,17 +20,21 @@ namespace _Project.Scripts.Logic.Game.Drone
         private readonly IUnitMovement _movement;
         private readonly IResourceCollectionService _collectionService;
         private readonly IFactionBasePositionProvider _positionProvider;
+        
+        private readonly DroneBehaviour _droneBehaviour;
 
         public DroneBrain(
             IResourceSpawner resourceSpawner, 
             IUnitMovement movement,
             IResourceCollectionService collectionService,
-            IFactionBasePositionProvider positionProvider)
+            IFactionBasePositionProvider positionProvider,
+            DroneBehaviour droneBehaviour)
         {
             _resourceSpawner = resourceSpawner;
             _movement = movement;
             _collectionService = collectionService;
             _positionProvider = positionProvider;
+            _droneBehaviour = droneBehaviour;
         }
         
         public void Tick()
@@ -54,7 +59,7 @@ namespace _Project.Scripts.Logic.Game.Drone
                     }
                     break;
                 case DroneState.MoveToResource:
-                    if (Vector3.Distance(_movement.Position, _resource.Position) < 1)
+                    if (Vector3.Distance(_movement.Position, _resource.Position) < 2)
                     {
                         // Start collectiong resource
                         _state = DroneState.Collecting;
@@ -65,7 +70,7 @@ namespace _Project.Scripts.Logic.Game.Drone
                     _collectionService.CollectResource(_resource.Id);
                     _resource = null;
                     
-                    var basePosition = _positionProvider.Position;
+                    var basePosition = _positionProvider.GetPosition(_droneBehaviour.Faction);
                     _movement.MoveTo(basePosition);
                     _state = DroneState.ReturnToBase;
                     
@@ -73,7 +78,7 @@ namespace _Project.Scripts.Logic.Game.Drone
                 case DroneState.ReturnToBase:
                     // if close to base - dispose resources
                     // TODO change distance check, maybe add some animation later
-                    if (Vector3.Distance(_movement.Position, _positionProvider.Position) < 4)
+                    if (Vector3.Distance(_movement.Position, _positionProvider.GetPosition(_droneBehaviour.Faction)) < 4)
                     {
                         _state = DroneState.SeekResource;
                     }

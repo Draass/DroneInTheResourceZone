@@ -12,7 +12,7 @@ namespace _Project.Scripts.Logic.Game
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<DroneBehaviour>().FromInstance(_droneBehaviour).AsSingle();
+            Container.BindInterfacesAndSelfTo<DroneBehaviour>().FromInstance(_droneBehaviour).AsSingle();
             
             Container.Bind<ITickable>().To<DroneBrain>().AsSingle();
         }

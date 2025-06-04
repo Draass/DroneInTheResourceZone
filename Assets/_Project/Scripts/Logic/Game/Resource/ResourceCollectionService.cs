@@ -38,7 +38,7 @@ namespace _Project.Scripts.Logic.Game.Resources
 
         public bool IsOccupied(int id)
         {
-            return _resourcesMap.GetValueOrDefault(id, true);
+            return _resourcesMap.GetValueOrDefault(id, false);
         }
 
         public void SetOccupied(int id, bool value)

@@ -2,6 +2,7 @@
 using _Project.Scripts.Logic.Game;
 using _Project.Scripts.Logic.Game.Providers;
 using _Project.Scripts.Logic.Game.Resources;
+using _Project.Scripts.Logic.Interfaces.Game;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -20,6 +21,10 @@ namespace _Project.Scripts.Logic.Common
         {
             Container.BindInterfacesTo<SpawnBoundsProvider>().FromInstance(_spawnBoundsProvider).AsSingle();
             Container.BindInterfacesTo<FactionBasePositionProvider>().FromInstance(_factionBasePositionProvider).AsSingle();
+
+            Container.BindInterfacesTo<FactionsServicesManager>().AsSingle();
+
+            Container.BindInterfacesTo<UnitFactory>().AsSingle();
             
             // Resources 
             Container.BindInterfacesTo<ResourceCollectionService>().AsSingle();

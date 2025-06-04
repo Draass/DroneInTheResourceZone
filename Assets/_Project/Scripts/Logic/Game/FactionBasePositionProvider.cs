@@ -1,11 +1,19 @@
-﻿using _Project.Scripts.Logic.Interfaces.Game.Providers;
+﻿using System.Collections.Generic;
+using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace _Project.Scripts.Logic.Game
 {
-    public class FactionBasePositionProvider : MonoBehaviour, IFactionBasePositionProvider
+    public class FactionBasePositionProvider : SerializedMonoBehaviour, IFactionBasePositionProvider
     {
-        [field: SerializeField]
-        public Vector3 Position { get; private set; }
+        [SerializeField]
+        private Dictionary<PlayerFaction, Transform> _factionPositions = new();
+        
+        public Vector3 GetPosition(PlayerFaction faction)
+        {
+            return _factionPositions[faction].position;
+        }
     }
 }

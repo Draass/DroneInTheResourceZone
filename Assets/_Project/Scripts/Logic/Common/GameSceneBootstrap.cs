@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Game;
 using _Project.Scripts.Logic.Interfaces.Common;
 using _Project.Scripts.Logic.Interfaces.Game;
 using Cysharp.Threading.Tasks;
@@ -13,23 +15,29 @@ namespace _Project.Scripts.Logic.Common
         private IEnumerable<IAsyncInitialize> _initializables;
         private IResourceSpawner _resourceSpawner;
         private IPresenterNavigationService _navigationService;
+        private IFactionsServicesManager _factionsServicesManager;
      
         private bool _initialized;
         
         [Inject]
         private void Construct(
             IEnumerable<IAsyncInitialize> initializables,
-            IResourceSpawner resourceSpawner
+            IResourceSpawner resourceSpawner,
+            IFactionsServicesManager factionsServicesManager
             //IPresenterNavigationService navigationService
             )
         {
             _initializables = initializables;
             _resourceSpawner = resourceSpawner;
+            _factionsServicesManager = factionsServicesManager;
             //_navigationService = navigationService;
         }
         
         private void Awake()
         {
+            _factionsServicesManager.RegisterUnitsService(PlayerFaction.Red);
+            _factionsServicesManager.RegisterUnitsService(PlayerFaction.Blue);
+            
             Initialize().Forget();
         }
 
