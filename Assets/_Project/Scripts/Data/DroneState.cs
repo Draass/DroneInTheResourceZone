@@ -1,4 +1,4 @@
-﻿namespace _Project.Scripts.Logic.Data
+﻿namespace _Project.Scripts.Data
 {
     public enum DroneState
     {

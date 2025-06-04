@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Resource
 {
     public interface IResourceItem
     {

@@ -1,7 +1,7 @@
 ﻿using System;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Factions
 {
     public class FactionResourcesService : IFactionResourcesService
     {

@@ -1,11 +1,10 @@
-﻿using System;
-using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Interfaces.Game;
+﻿using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Interfaces.Game.Unit;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Drone
 {
     [DisallowMultipleComponent]
     public class DroneBehaviour : MonoBehaviour, IUnitMovement

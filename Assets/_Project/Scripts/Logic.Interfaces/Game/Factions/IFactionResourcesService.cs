@@ -1,7 +1,6 @@
 ﻿using System;
-using _Project.Scripts.Logic.Game;
 
-namespace _Project.Scripts.Logic.Interfaces.Game
+namespace _Project.Scripts.Logic.Interfaces.Game.Factions
 {
     public interface IFactionResourcesService
     {

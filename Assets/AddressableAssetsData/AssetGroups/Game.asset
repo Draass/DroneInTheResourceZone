@@ -10,14 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Game
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
-  m_GUID: 8a2fcdb0cdeedb84a9af839e8c700ec7
-  m_SerializeEntries: []
+  m_GroupName: Game
+  m_GUID: d01e8165d35e01a42a8142c4f548c29f
+  m_SerializeEntries:
+  - m_GUID: 9ce71b6832d38fc4dbf65afbb8e1e8ab
+    m_Address: Drone
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 048fa295c38c7ab4ea7f348c41c9f1c4, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: f36219f600977d246b02e4da5aa4bfaa, type: 2}
-    - {fileID: 11400000, guid: 6e0551d430c2da940b31071fc6a5a1fc, type: 2}
+    - {fileID: 11400000, guid: 7d27ff4e60d1f194dac49b9f7031ebf8, type: 2}
+    - {fileID: 11400000, guid: 7d38fff3c5c1c024aa69359c497f7e92, type: 2}

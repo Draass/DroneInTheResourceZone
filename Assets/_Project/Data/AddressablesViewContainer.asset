@@ -34,14 +34,59 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: _Project.Scripts.UI.Views.GameView, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 7
+      Data: 3|UnityEngine.AddressableAssets.AssetReference, Unity.Addressables
+    - Name: m_AssetGUID
+      Entry: 1
+      Data: 7921e1bd89d63814496b2747c29142d2
+    - Name: m_SubObjectName
+      Entry: 6
+      Data: 
+    - Name: m_SubObjectType
+      Entry: 1
+      Data: 
+    - Name: m_SubObjectGUID
+      Entry: 1
+      Data: 
+    - Name: m_EditorAssetChanged
+      Entry: 5
+      Data: true
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  _viewsToAdd: []
+  _viewsToAdd:
+  - rid: 6399141280889962568
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6399141280889962568
+      type: {class: AssetReference, ns: UnityEngine.AddressableAssets, asm: Unity.Addressables}
+      data:
+        m_AssetGUID: 7921e1bd89d63814496b2747c29142d2
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_SubObjectGUID: 
+        m_EditorAssetChanged: 1

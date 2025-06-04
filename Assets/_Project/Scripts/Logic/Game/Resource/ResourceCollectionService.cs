@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
 using UnityEngine;
 
-namespace _Project.Scripts.Logic.Game.Resources
+namespace _Project.Scripts.Logic.Game.Resource
 {
     public class ResourceCollectionService : IResourceCollectionService
     {

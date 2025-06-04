@@ -1,9 +1,6 @@
-﻿using System;
-using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Game;
-using _Project.Scripts.Logic.Game.Resources;
-using _Project.Scripts.Logic.Interfaces.Ga;
-using _Project.Scripts.Logic.Interfaces.Game;
+﻿using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
 using DraasGames.Core.Runtime.UI.Views.Concrete;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -32,9 +29,6 @@ namespace _Project.Scripts.UI.Views
         
         [SerializeField, BoxGroup("Blue")]
         private Button _removeDroneButtonBlue;
-
-        [SerializeField] 
-        private Slider _droneAmountSlider;
         
         private IResourceSpawner _resourceSpawner;
         private IResourceAutoSpawner _resourceAutoSpawner;
@@ -57,7 +51,6 @@ namespace _Project.Scripts.UI.Views
             
             _spawnResourceButton.onClick.AddListener(SpawnResoource);
             _spawnRateInputField.onEndEdit.AddListener(OnSpawnRateChanged);
-            //_droneAmountSlider.onValueChanged.AddListener(OnSliderValueChanged);
             
             _addDroneButtonRed.onClick.AddListener(() => AddDrone(PlayerFaction.Red));
             _addDroneButtonBlue.onClick.AddListener(() => AddDrone(PlayerFaction.Blue));

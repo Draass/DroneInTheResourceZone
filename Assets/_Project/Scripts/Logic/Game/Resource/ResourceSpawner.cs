@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Project.Scripts.Data.Interfaces;
-using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Resource
 {
     public class ResourceSpawner : IResourceSpawner
     {

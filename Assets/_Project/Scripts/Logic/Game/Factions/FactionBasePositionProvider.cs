@@ -4,7 +4,7 @@ using _Project.Scripts.Logic.Interfaces.Game.Providers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Factions
 {
     public class FactionBasePositionProvider : SerializedMonoBehaviour, IFactionBasePositionProvider
     {

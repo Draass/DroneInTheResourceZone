@@ -1,7 +1,10 @@
 ﻿using System;
-using _Project.Scripts.Logic.Data;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Data;
+using _Project.Scripts.Logic.Game.Resource;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
+using _Project.Scripts.Logic.Interfaces.Game.Unit;
 using UnityEngine;
 using Zenject;
 
@@ -11,7 +14,7 @@ namespace _Project.Scripts.Logic.Game.Drone
     {
         private DroneState _state = DroneState.None;
 
-        private const int DistanceToPickResource = 2;
+        private const int DistanceToPickResource = 3;
         private const int DistanceToDisposeResource = 4;
 
         private float _collectTime = 2f;

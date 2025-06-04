@@ -1,11 +1,11 @@
 ﻿using _Project.Scripts.Data;
 using _Project.Scripts.Logic.Interfaces.Common;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
 using Cysharp.Threading.Tasks;
 using DraasGames.Core.Runtime.Infrastructure.Loaders.Abstract;
 using Zenject;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Resource
 {
     public class ResourceFactory : IResourceFactory, IAsyncInitialize
     {

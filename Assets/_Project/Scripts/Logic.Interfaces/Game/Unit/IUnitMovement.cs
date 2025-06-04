@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _Project.Scripts.Logic.Interfaces.Game
+namespace _Project.Scripts.Logic.Interfaces.Game.Unit
 {
     public interface IUnitMovement
     {

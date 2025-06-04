@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Game;
 using _Project.Scripts.Logic.Interfaces.Common;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
+using _Project.Scripts.Logic.Interfaces.Game.Resource;
+using _Project.Scripts.UI.Views;
 using Cysharp.Threading.Tasks;
-using DraasGames.Core.Runtime.UI.PresenterNavigationService.Abstract;
+using DraasGames.Core.Runtime.UI.Views.Abstract;
 using UnityEngine;
 using Zenject;
 
@@ -14,7 +15,6 @@ namespace _Project.Scripts.Logic.Common
     {
         private IEnumerable<IAsyncInitialize> _initializables;
         private IResourceSpawner _resourceSpawner;
-        private IPresenterNavigationService _navigationService;
         private IFactionsServicesManager _factionsServicesManager;
      
         private bool _initialized;
@@ -49,11 +49,7 @@ namespace _Project.Scripts.Logic.Common
 
         private async UniTaskVoid StartAsync()
         {
-            // await UniTask.WaitWhile<bool>(true, _ => _initializeTask.Status == UniTaskStatus.Pending);
-            
             await UniTask.WaitWhile(() => !_initialized);
-            
-            // TODO Show game presenter
             
             _resourceSpawner.SpawnResource();
         }

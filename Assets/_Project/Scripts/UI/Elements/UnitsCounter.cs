@@ -1,10 +1,10 @@
 ﻿using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
 using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Scripts.UI.Views
+namespace _Project.Scripts.UI.Elements
 {
     public class UnitsCounter : MonoBehaviour
     {

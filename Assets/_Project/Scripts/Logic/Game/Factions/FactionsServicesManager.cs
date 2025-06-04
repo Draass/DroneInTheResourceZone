@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
 using Zenject;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Factions
 {
     public class FactionsServicesManager : IFactionsServicesManager
     {

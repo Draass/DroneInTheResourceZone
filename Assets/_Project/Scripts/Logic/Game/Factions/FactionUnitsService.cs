@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Project.Scripts.Data;
-using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Game.Drone;
+using _Project.Scripts.Logic.Interfaces.Game.Factions;
+using _Project.Scripts.Logic.Interfaces.Game.Unit;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Game.Factions
 {
     public class FactionUnitsService : IFactionUnitsService
     {

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Views
   m_GUID: 129db6b875a9ed04089c20be9ece74d9
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 7921e1bd89d63814496b2747c29142d2
+    m_Address: Game View
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 048fa295c38c7ab4ea7f348c41c9f1c4, type: 2}
   m_SchemaSet:

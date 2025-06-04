@@ -1,7 +1,8 @@
 ﻿using System;
 using _Project.Scripts.Logic.Game;
+using _Project.Scripts.Logic.Game.Factions;
 using _Project.Scripts.Logic.Game.Providers;
-using _Project.Scripts.Logic.Game.Resources;
+using _Project.Scripts.Logic.Game.Resource;
 using _Project.Scripts.Logic.Game.Unit;
 using _Project.Scripts.Logic.Interfaces.Game;
 using Sirenix.OdinInspector;

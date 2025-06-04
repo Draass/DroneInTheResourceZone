@@ -1,9 +1,8 @@
-﻿using _Project.Scripts.Logic.Interfaces.Ga;
-using _Project.Scripts.Logic.Interfaces.Game;
+﻿using _Project.Scripts.Logic.Interfaces.Game.Resource;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Scripts.Logic.Game.Resources
+namespace _Project.Scripts.Logic.Game.Resource
 {
     public class ResourceAutoSpawner : IResourceAutoSpawner, ITickable
     {

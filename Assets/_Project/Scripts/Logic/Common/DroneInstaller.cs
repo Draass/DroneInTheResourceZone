@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace _Project.Scripts.Logic.Game
+namespace _Project.Scripts.Logic.Common
 {
     public class DroneInstaller : MonoInstaller
     {

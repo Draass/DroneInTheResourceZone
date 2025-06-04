@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Data;
 
-namespace _Project.Scripts.Logic.Interfaces.Game
+namespace _Project.Scripts.Logic.Interfaces.Game.Factions
 {
     public interface IFactionsServicesManager
     {

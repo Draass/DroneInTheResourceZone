@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using _Project.Scripts.Logic.Game;
+using _Project.Scripts.Logic.Game.Resource;
 
-namespace _Project.Scripts.Logic.Interfaces.Game
+namespace _Project.Scripts.Logic.Interfaces.Game.Resource
 {
     public interface IResourceSpawner
     {

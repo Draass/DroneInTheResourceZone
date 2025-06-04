@@ -1,4 +1,4 @@
-﻿namespace _Project.Scripts.Logic.Interfaces.Ga
+﻿namespace _Project.Scripts.Logic.Interfaces.Game.Resource
 {
     public interface IResourceAutoSpawner
     {

@@ -1,4 +1,4 @@
-﻿namespace _Project.Scripts.Logic.Interfaces.Game
+﻿namespace _Project.Scripts.Logic.Interfaces.Game.Resource
 {
     public interface IResourceCollectionService
     {
