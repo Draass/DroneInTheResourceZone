@@ -1,5 +1,4 @@
 ﻿using Unity.AI.Navigation;
-using UnityEngine;
 
 namespace _Project.Scripts.Logic.Interfaces.Game.Providers
 {

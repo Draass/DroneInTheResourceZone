@@ -1,10 +1,12 @@
 ﻿using System;
 using _Project.Scripts.Data;
 using _Project.Scripts.Logic.Game;
+using _Project.Scripts.Logic.Game.Resources;
+using _Project.Scripts.Logic.Interfaces.Ga;
 using _Project.Scripts.Logic.Interfaces.Game;
 using DraasGames.Core.Runtime.UI.Views.Concrete;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -13,8 +15,11 @@ namespace _Project.Scripts.UI.Views
 {
     public class GameView : View
     {
-        [SerializeField] 
+        [SerializeField, BoxGroup("General")] 
         private Button _spawnResourceButton;
+
+        [SerializeField, BoxGroup("General")] 
+        private TMP_InputField _spawnRateInputField;
         
         [SerializeField, BoxGroup("Red")]
         private Button _addDroneButtonRed;
@@ -32,15 +37,18 @@ namespace _Project.Scripts.UI.Views
         private Slider _droneAmountSlider;
         
         private IResourceSpawner _resourceSpawner;
+        private IResourceAutoSpawner _resourceAutoSpawner;
         private IFactionsServicesManager _factionsServicesManager;
 
         [Inject]
         private void Construct(
             IResourceSpawner resourceSpawner,
-            IFactionsServicesManager factionsServicesManager)
+            IFactionsServicesManager factionsServicesManager,
+            IResourceAutoSpawner resourceAutoSpawner)
         {
             _resourceSpawner = resourceSpawner;
             _factionsServicesManager = factionsServicesManager;
+            _resourceAutoSpawner = resourceAutoSpawner;
         }
         
         protected override void Awake()
@@ -48,6 +56,7 @@ namespace _Project.Scripts.UI.Views
             base.Awake();
             
             _spawnResourceButton.onClick.AddListener(SpawnResoource);
+            _spawnRateInputField.onEndEdit.AddListener(OnSpawnRateChanged);
             //_droneAmountSlider.onValueChanged.AddListener(OnSliderValueChanged);
             
             _addDroneButtonRed.onClick.AddListener(() => AddDrone(PlayerFaction.Red));
@@ -55,6 +64,21 @@ namespace _Project.Scripts.UI.Views
             
             _removeDroneButtonBlue.onClick.AddListener(() => RemoveDrone(PlayerFaction.Blue));
             _removeDroneButtonRed.onClick.AddListener(() => RemoveDrone(PlayerFaction.Red));
+        }
+
+        private void Start()
+        {
+            _spawnRateInputField.SetTextWithoutNotify(_resourceAutoSpawner.SpawnRate.ToString());
+        }
+
+        private void OnSpawnRateChanged(string arg0)
+        {
+            float.TryParse(arg0, out var spawnRate);
+
+            if (spawnRate > 0)
+            {
+                _resourceAutoSpawner.SetSpawnRate(spawnRate);
+            }
         }
 
         private void AddDrone(PlayerFaction faction)

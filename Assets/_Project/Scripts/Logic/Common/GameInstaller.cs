@@ -19,6 +19,8 @@ namespace _Project.Scripts.Logic.Common
         
         public override void InstallBindings()
         {
+            Container.BindInterfacesTo<ResourceAutoSpawner>().AsSingle();
+            
             Container.BindInterfacesTo<SpawnBoundsProvider>().FromInstance(_spawnBoundsProvider).AsSingle();
             Container.BindInterfacesTo<FactionBasePositionProvider>().FromInstance(_factionBasePositionProvider).AsSingle();
 

@@ -14,7 +14,7 @@ namespace _Project.Scripts.Logic.Game
         {
             Container.BindInterfacesAndSelfTo<DroneBehaviour>().FromInstance(_droneBehaviour).AsSingle();
             
-            Container.Bind<ITickable>().To<DroneBrain>().AsSingle();
+            Container.BindInterfacesTo<DroneBrain>().AsSingle();
         }
     }
 }

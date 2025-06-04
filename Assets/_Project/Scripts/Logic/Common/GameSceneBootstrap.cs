@@ -24,19 +24,20 @@ namespace _Project.Scripts.Logic.Common
             IEnumerable<IAsyncInitialize> initializables,
             IResourceSpawner resourceSpawner,
             IFactionsServicesManager factionsServicesManager
-            //IPresenterNavigationService navigationService
             )
         {
             _initializables = initializables;
             _resourceSpawner = resourceSpawner;
             _factionsServicesManager = factionsServicesManager;
-            //_navigationService = navigationService;
         }
         
         private void Awake()
         {
             _factionsServicesManager.RegisterUnitsService(PlayerFaction.Red);
             _factionsServicesManager.RegisterUnitsService(PlayerFaction.Blue);
+            
+            _factionsServicesManager.RegisterResourcesService(PlayerFaction.Red);
+            _factionsServicesManager.RegisterResourcesService(PlayerFaction.Blue);
             
             Initialize().Forget();
         }

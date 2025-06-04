@@ -1,5 +1,4 @@
 ﻿using System;
-using _Project.Scripts.Data;
 using _Project.Scripts.Logic.Data;
 using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
@@ -12,6 +11,9 @@ namespace _Project.Scripts.Logic.Game.Drone
     {
         private DroneState _state = DroneState.None;
 
+        private const int DistanceToPickResource = 2;
+        private const int DistanceToDisposeResource = 4;
+
         private float _collectTime = 2f;
 
         private IResourceItem _resource;
@@ -20,27 +22,30 @@ namespace _Project.Scripts.Logic.Game.Drone
         private readonly IUnitMovement _movement;
         private readonly IResourceCollectionService _collectionService;
         private readonly IFactionBasePositionProvider _positionProvider;
+        private readonly IFactionsServicesManager _factionsServicesManager;
         
         private readonly DroneBehaviour _droneBehaviour;
+        
+        private IFactionResourcesService _factionResourcesService;
 
         public DroneBrain(
             IResourceSpawner resourceSpawner, 
             IUnitMovement movement,
             IResourceCollectionService collectionService,
             IFactionBasePositionProvider positionProvider,
-            DroneBehaviour droneBehaviour)
+            DroneBehaviour droneBehaviour,
+            IFactionsServicesManager factionsServicesManager)
         {
             _resourceSpawner = resourceSpawner;
             _movement = movement;
             _collectionService = collectionService;
             _positionProvider = positionProvider;
             _droneBehaviour = droneBehaviour;
+            _factionsServicesManager = factionsServicesManager;
         }
         
         public void Tick()
         {
-            // if resource is null - find resource
-
             switch (_state)
             {
                 case DroneState.None:
@@ -59,7 +64,7 @@ namespace _Project.Scripts.Logic.Game.Drone
                     }
                     break;
                 case DroneState.MoveToResource:
-                    if (Vector3.Distance(_movement.Position, _resource.Position) < 2)
+                    if (Vector3.Distance(_movement.Position, _resource.Position) < DistanceToPickResource)
                     {
                         // Start collectiong resource
                         _state = DroneState.Collecting;
@@ -76,10 +81,14 @@ namespace _Project.Scripts.Logic.Game.Drone
                     
                     break;
                 case DroneState.ReturnToBase:
-                    // if close to base - dispose resources
-                    // TODO change distance check, maybe add some animation later
-                    if (Vector3.Distance(_movement.Position, _positionProvider.GetPosition(_droneBehaviour.Faction)) < 4)
+                    // TODO walkaround, drone behavior is initialized later that Initialize is called here
+                    // there should be no drone behaviour at all, other id source
+                    _factionResourcesService ??= _factionsServicesManager.GetResourceService(_droneBehaviour.Faction);
+              
+                    if (Vector3.Distance(_movement.Position, _positionProvider.GetPosition(_droneBehaviour.Faction)) < DistanceToDisposeResource)
                     {
+                        _factionResourcesService.AddResource(1);
+                        
                         _state = DroneState.SeekResource;
                     }
                     break;
