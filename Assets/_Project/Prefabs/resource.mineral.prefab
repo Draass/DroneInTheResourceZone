@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7635448356849146165}
   - component: {fileID: 6183831130890026518}
   - component: {fileID: 6326776574431553097}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: resource.mineral
   m_TagString: Untagged
   m_Icon: {fileID: 0}

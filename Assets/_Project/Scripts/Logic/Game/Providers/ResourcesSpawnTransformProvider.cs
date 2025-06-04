@@ -1,6 +1,4 @@
 ﻿using _Project.Scripts.Logic.Interfaces.Game.Providers;
-using DraasGames.Core.Runtime.Infrastructure.Logger;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 

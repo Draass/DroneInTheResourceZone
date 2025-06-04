@@ -12,11 +12,16 @@ namespace _Project.Scripts.Logic.Common
         [SerializeField, Required, SceneObjectsOnly]
         private SpawnBoundsProvider _spawnBoundsProvider;
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private FactionBasePositionProvider _factionBasePositionProvider;
+        
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<SpawnBoundsProvider>().FromInstance(_spawnBoundsProvider).AsSingle();
+            Container.BindInterfacesTo<FactionBasePositionProvider>().FromInstance(_factionBasePositionProvider).AsSingle();
             
             // Resources 
+            Container.BindInterfacesTo<ResourceCollectionService>().AsSingle();
             Container.BindInterfacesTo<ResourceFactory>().AsSingle();
             Container.BindInterfacesTo<ResourceSpawner>().AsSingle();
             Container.BindInterfacesTo<ResourcesSpawnTransformProvider>().AsSingle();

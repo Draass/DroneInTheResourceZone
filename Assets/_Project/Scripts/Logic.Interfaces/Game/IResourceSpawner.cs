@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using _Project.Scripts.Logic.Game;
 
 namespace _Project.Scripts.Logic.Interfaces.Game
 {
     public interface IResourceSpawner
     {
-        event Action OnResourceSpawned;
+        IReadOnlyList<IResourceItem> ResourceItems { get; }
+        
+        event Action<IResourceItem> OnResourceSpawned;
 
         void SpawnResource();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using _Project.Scripts.Data.Interfaces;
 using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
@@ -13,7 +14,11 @@ namespace _Project.Scripts.Logic.Game
         private readonly IGameEntitites _gameEntities;
         private readonly IResourceFactory _resourceFactory;
 
-        public event Action OnResourceSpawned;
+        public IReadOnlyList<IResourceItem> ResourceItems => _resourceItems;
+        
+        private List<IResourceItem> _resourceItems = new List<IResourceItem>();
+        
+        public event Action<IResourceItem> OnResourceSpawned;
     
         // TODO should be in other place
         public bool IsEnabled { get; private set; }
@@ -35,17 +40,21 @@ namespace _Project.Scripts.Logic.Game
             // Get random resource
             var resourceId = GetRandomResource();
         
-            CreateItemForId(resourceId);
+            var item = CreateItemForId(resourceId);
+            
+            _resourceItems.Add(item);
 
             // TODO add to event parameters
-            OnResourceSpawned?.Invoke();
+            OnResourceSpawned?.Invoke(item);
         }
     
         public void SpawnResource(string id)
         {
-            CreateItemForId(id);
+            var item = CreateItemForId(id);
         
-            OnResourceSpawned?.Invoke();
+            _resourceItems.Add(item);
+            
+            OnResourceSpawned?.Invoke(item);
         }
     
         private ResourceItem CreateItemForId(string resourceId)
