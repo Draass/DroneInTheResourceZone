@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using UnityEngine;
 
 namespace _Project.Scripts.Logic.Game
 {

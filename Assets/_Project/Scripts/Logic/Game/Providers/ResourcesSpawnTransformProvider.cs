@@ -6,8 +6,8 @@ namespace _Project.Scripts.Logic.Game.Providers
 {
     public class ResourcesSpawnTransformProvider : IResourceSpawnTransformProvider
     {
-        private const int MaxAttempts = 25;
-        private const int Radius = 1;
+        private const int MaxAttempts = 200;
+        private const float Radius = .3f;
         
         private readonly ISpawnBoundsProvider _spawnBoundsProvider;
 

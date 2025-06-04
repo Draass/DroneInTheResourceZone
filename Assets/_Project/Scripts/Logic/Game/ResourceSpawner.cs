@@ -4,6 +4,7 @@ using _Project.Scripts.Data.Interfaces;
 using _Project.Scripts.Logic.Interfaces.Game;
 using _Project.Scripts.Logic.Interfaces.Game.Providers;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace _Project.Scripts.Logic.Game
@@ -19,11 +20,7 @@ namespace _Project.Scripts.Logic.Game
         private List<IResourceItem> _resourceItems = new List<IResourceItem>();
         
         public event Action<IResourceItem> OnResourceSpawned;
-    
-        // TODO should be in other place
-        public bool IsEnabled { get; private set; }
-    
-        public int SpawnRate { get; private set; }
+        public event Action<IResourceItem> OnResourceDespawned;
 
         public ResourceSpawner(
             IResourceSpawnTransformProvider resourceSpawnTransformProvider,
@@ -56,12 +53,31 @@ namespace _Project.Scripts.Logic.Game
             
             OnResourceSpawned?.Invoke(item);
         }
-    
+
+        public void Despawn(int id)
+        {
+            var item = _resourceItems.Find(item => item.Id == id);
+            
+            OnResourceDespawned?.Invoke(item);
+            
+            _resourceItems.Remove(item);
+            
+            var itemAsMono = item as MonoBehaviour;
+            
+            Object.Destroy(itemAsMono.gameObject);
+        }
+
         private ResourceItem CreateItemForId(string resourceId)
         {
             var resourceItem = _resourceFactory.Create(resourceId);
 
             var resourcePosition = _resourceSpawnTransformProvider.GetSpawnTransform();
+
+            if (!resourcePosition.HasValue)
+            {
+                // TODO should not happen
+                resourcePosition = Vector3.zero;
+            }
             
             resourceItem.transform.SetPositionAndRotation(resourcePosition.Value, Quaternion.identity);
 

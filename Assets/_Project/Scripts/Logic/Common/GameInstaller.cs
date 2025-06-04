@@ -1,6 +1,7 @@
 ﻿using System;
 using _Project.Scripts.Logic.Game;
 using _Project.Scripts.Logic.Game.Providers;
+using _Project.Scripts.Logic.Game.Resources;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;

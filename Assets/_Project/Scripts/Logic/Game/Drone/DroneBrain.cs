@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq;
+using _Project.Scripts.Logic.Data;
 using _Project.Scripts.Logic.Interfaces.Game;
+using _Project.Scripts.Logic.Interfaces.Game.Providers;
 using UnityEngine;
 using Zenject;
 
@@ -71,6 +72,7 @@ namespace _Project.Scripts.Logic.Game.Drone
                     break;
                 case DroneState.ReturnToBase:
                     // if close to base - dispose resources
+                    // TODO change distance check, maybe add some animation later
                     if (Vector3.Distance(_movement.Position, _positionProvider.Position) < 4)
                     {
                         _state = DroneState.SeekResource;
