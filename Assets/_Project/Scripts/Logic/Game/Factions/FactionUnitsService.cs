@@ -25,6 +25,7 @@ namespace _Project.Scripts.Logic.Game.Factions
         public event Action OnUnitRemoved;
         
         private Dictionary<int, DroneBehaviour> _drones = new();
+        private int _nextDroneId = 1;
         
         public FactionUnitsService(IUnitFactory unitFactory)
         {
@@ -50,12 +51,13 @@ namespace _Project.Scripts.Logic.Game.Factions
             
             // TODO spawn near faction base
             drone.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            
-            _drones.Add(drone.GetInstanceID(), drone);
+
+            var droneId = _nextDroneId++;
+            _drones.Add(droneId, drone);
             
             OnUnitAdded?.Invoke();
 
-            return drone.GetInstanceID();
+            return droneId;
         }
 
         public void RemoveDrone()
@@ -65,9 +67,10 @@ namespace _Project.Scripts.Logic.Game.Factions
                 return;
             }
             
-            var drone = _drones.Values.First();
-            
-            _drones.Remove(drone.GetInstanceID());
+            var droneEntry = _drones.First();
+            var drone = droneEntry.Value;
+
+            _drones.Remove(droneEntry.Key);
             
             Object.Destroy(drone.gameObject);
             

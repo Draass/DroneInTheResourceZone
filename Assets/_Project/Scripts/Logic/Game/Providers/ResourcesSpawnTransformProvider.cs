@@ -1,6 +1,6 @@
 ﻿using _Project.Scripts.Logic.Interfaces.Game.Providers;
+using Pathfinding;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace _Project.Scripts.Logic.Game.Providers
 {
@@ -10,6 +10,8 @@ namespace _Project.Scripts.Logic.Game.Providers
         private const float Radius = .3f;
         
         private readonly ISpawnBoundsProvider _spawnBoundsProvider;
+        
+        private readonly NearestNodeConstraint _walkable = NearestNodeConstraint.Walkable;
 
         public ResourcesSpawnTransformProvider(ISpawnBoundsProvider spawnBoundsProvider)
         {
@@ -18,39 +20,32 @@ namespace _Project.Scripts.Logic.Game.Providers
         
         public Vector3? GetSpawnTransform()
         {
-            var bounds = _spawnBoundsProvider.Surface.navMeshData.sourceBounds;
-            var surface = _spawnBoundsProvider.Surface;
-            
-            Vector3 centerW = surface.transform.TransformPoint(bounds.center);
-            Vector3 extW = Vector3.Scale(bounds.extents, surface.transform.lossyScale);
+            var bounds = _spawnBoundsProvider.WorldBounds;
 
-            Vector3 minW = centerW - extW;
-            Vector3 maxW = centerW + extW;
-
-            for (int attempt = 0; attempt < MaxAttempts; attempt++)
+            for (var attempt = 0; attempt < MaxAttempts; ++attempt)
             {
+                /* 1 — pick a random point inside the bounding box */
                 var random = new Vector3(
-                    Random.Range(minW.x, maxW.x),
-                    Random.Range(minW.y, maxW.y),
-                    Random.Range(minW.z, maxW.z));
+                    Random.Range(bounds.min.x, bounds.max.x),
+                    Random.Range(bounds.min.y, bounds.max.y),
+                    Random.Range(bounds.min.z, bounds.max.z));
 
-                if (!NavMesh.SamplePosition(random, out var hit, 1f, NavMesh.AllAreas))
-                {
-                    continue;
-                }
-                
-                Vector3 pos = hit.position;
+                var nn = AstarPath.active.GetNearest(random, _walkable);
+                if (nn.node == null || !nn.node.Walkable) continue;
 
-                var isOccupied = Physics.CheckSphere(pos, Radius, 3);
+                var pos = (Vector3)nn.position;
 
-                if (!isOccupied)
-                {
-                    return pos;
-                }
+                /* 3 — if the graph node lies just outside the original AABB, skip it */
+                if (!bounds.Contains(pos)) continue;
+
+                /* 4 — make sure nothing occupies the spot already */
+                if (Physics.CheckSphere(pos, Radius, 3 /* layer mask */)) continue;
+
+                /* 5 — success! */
+                return pos;
             }
 
-            Debug.LogError("Could not get spawn bounds");
-
+            Debug.LogError("ResourcesSpawnTransformProvider: failed to find a free spot.");
             return null;
         }
     }

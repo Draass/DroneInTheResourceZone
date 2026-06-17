@@ -33,6 +33,7 @@ namespace _Project.Scripts.UI.Views
         private IResourceSpawner _resourceSpawner;
         private IResourceAutoSpawner _resourceAutoSpawner;
         private IFactionsServicesManager _factionsServicesManager;
+        private IFactionResourcesService _factionResourcesService;
 
         [Inject]
         private void Construct(
@@ -52,11 +53,18 @@ namespace _Project.Scripts.UI.Views
             _spawnResourceButton.onClick.AddListener(SpawnResoource);
             _spawnRateInputField.onEndEdit.AddListener(OnSpawnRateChanged);
             
-            _addDroneButtonRed.onClick.AddListener(() => AddDrone(PlayerFaction.Red));
+            _addDroneButtonRed.onClick.AddListener(TryAddDrone);
             _addDroneButtonBlue.onClick.AddListener(() => AddDrone(PlayerFaction.Blue));
             
             _removeDroneButtonBlue.onClick.AddListener(() => RemoveDrone(PlayerFaction.Blue));
             _removeDroneButtonRed.onClick.AddListener(() => RemoveDrone(PlayerFaction.Red));
+        }
+
+        private void TryAddDrone()
+        {
+            _factionResourcesService.RemoveResource(1);
+            
+            AddDrone(PlayerFaction.Red);
         }
 
         private void Start()

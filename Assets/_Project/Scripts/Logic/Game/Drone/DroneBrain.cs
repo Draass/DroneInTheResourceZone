@@ -17,8 +17,6 @@ namespace _Project.Scripts.Logic.Game.Drone
         private const int DistanceToPickResource = 3;
         private const int DistanceToDisposeResource = 4;
 
-        private float _collectTime = 2f;
-
         private IResourceItem _resource;
         
         private readonly IResourceSpawner _resourceSpawner;
