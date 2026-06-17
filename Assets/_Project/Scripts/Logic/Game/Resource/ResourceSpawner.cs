@@ -18,6 +18,7 @@ namespace _Project.Scripts.Logic.Game.Resource
         public IReadOnlyList<IResourceItem> ResourceItems => _resourceItems;
         
         private List<IResourceItem> _resourceItems = new List<IResourceItem>();
+        private int _nextResourceId = 1;
         
         public event Action<IResourceItem> OnResourceSpawned;
         public event Action<IResourceItem> OnResourceDespawned;
@@ -70,6 +71,7 @@ namespace _Project.Scripts.Logic.Game.Resource
         private ResourceItem CreateItemForId(string resourceId)
         {
             var resourceItem = _resourceFactory.Create(resourceId);
+            resourceItem.Initialize(_nextResourceId++);
 
             var resourcePosition = _resourceSpawnTransformProvider.GetSpawnTransform();
 

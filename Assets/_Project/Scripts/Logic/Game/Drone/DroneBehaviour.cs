@@ -1,16 +1,16 @@
 ﻿using _Project.Scripts.Data;
 using _Project.Scripts.Logic.Interfaces.Game.Unit;
+using Pathfinding;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace _Project.Scripts.Logic.Game.Drone
 {
     [DisallowMultipleComponent]
     public class DroneBehaviour : MonoBehaviour, IUnitMovement
     {
-        [SerializeField, Required]
-        private NavMeshAgent _agent;
+        [SerializeField, Required] 
+        private AIPath _astarAI; 
 
         public PlayerFaction Faction { get; private set; }
         
@@ -25,14 +25,13 @@ namespace _Project.Scripts.Logic.Game.Drone
 
         public void MoveTo(Vector3 position)
         {
-            _agent.SetDestination(position);
-            
-            _agent.isStopped = false;
+            _astarAI.destination = position;
+            _astarAI.isStopped = false;
         }
 
         public void Stop()
         {
-            _agent.isStopped = true;
+            _astarAI.isStopped = true;
         }
     }
 }

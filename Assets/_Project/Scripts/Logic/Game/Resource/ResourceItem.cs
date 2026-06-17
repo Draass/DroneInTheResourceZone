@@ -11,8 +11,13 @@ namespace _Project.Scripts.Logic.Game.Resource
     [DisallowMultipleComponent]
     public class ResourceItem : MonoBehaviour, IResourceItem
     {
-        public int Id => GetInstanceID();
+        public int Id { get; private set; }
         
         public Vector3 Position => transform.position;
+
+        public void Initialize(int id)
+        {
+            Id = id;
+        }
     }
 }
